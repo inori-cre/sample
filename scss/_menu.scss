@@ -1,0 +1,90 @@
+/*------------------------------------
+メニューアイテム
+-------------------------------------*/
+@use "mixin" as mixin;
+
+.menu-item {
+  margin-bottom: 50px;
+  .menu-title {
+    padding: 10px 0;
+    background-color: #fff3e4;
+    font-size: 1.6rem;
+  }
+
+  .menu-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    @include mixin.pc {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-text {
+      width: 60%;
+      margin-left: 20px;
+      margin-right: 60px;
+      text-align: left;
+      @include mixin.pc {
+        width: 90%;
+        margin: 0;
+      }
+      p {
+        font-size: 1.1rem;
+        margin-bottom: 50px;
+      }
+
+      table {
+        width: 100%;
+        tr {
+          @include mixin.tab {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 8px;
+          }
+          td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.2rem;
+            @include mixin.tab {
+              padding: 0;
+            }
+            &:first-child {
+              width: 20%;
+              @include mixin.tab {
+                border-bottom: none;
+              }
+            }
+
+            &:nth-child(2) {
+              width: 40%;
+              @include mixin.tab {
+                width: 80%;
+                padding-left: 20px;
+                border-bottom: none;
+              }
+            }
+
+            &:last-child {
+              width: 40%;
+              font-size: 1rem;
+              @include mixin.tab {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    img {
+      width: 40%;
+      padding-left: 20px;
+      @include mixin.pc {
+        width: 90%;
+        margin-top: 30px;
+        padding-left: 0;
+      }
+    }
+  }
+}

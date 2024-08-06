@@ -1,0 +1,30 @@
+@use "mixin" as mixin;
+
+.voice-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .voice-item {
+    width: 30%;
+    background-color: #fff3e4;
+    margin-bottom: 50px;
+    padding: 20px 30px;
+    text-align: left;
+    @include mixin.tab {
+      width: 45%;
+    }
+    @include mixin.sp {
+      width: 100%;
+    }
+    .star {
+      font-size: 1.2em;
+      color: #000000;
+    }
+
+    .voice-text {
+      font-size: 1em;
+      margin-top: 10px;
+    }
+  }
+}

@@ -1,0 +1,321 @@
+@use "mixin" as mixin;
+
+body {
+  color: #000;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+li {
+  list-style: none;
+}
+
+/*------------------------------------
+ヘッダー
+-------------------------------------*/
+header {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 700;
+
+  .site-title {
+    line-height: 1px;
+    padding: 0 20px;
+    width: 100px;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+
+    .nav-list {
+      display: flex;
+      text-align: center;
+      list-style: none;
+      @include mixin.tab {
+        width: 100%;
+        height: 100vh;
+        background-color: #ffffff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 20;
+        text-align: center;
+        transition: all 0.6s ease;
+        flex-direction: column;
+        opacity: 0;
+        visibility: hidden;
+        padding-top: 70px;
+      }
+      &.open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      li {
+        padding: 0 15px;
+        border-right: 1px solid #333;
+        @include mixin.tab {
+          width: 100%;
+          padding: 20px 0;
+          border-right: none;
+          border-bottom: 1px solid #333;
+        }
+
+        &:last-child {
+          border-right: none;
+          @include mixin.tab {
+            border-bottom: none;
+          }
+        }
+
+        a {
+          font-size: 1.1rem;
+          color: #000;
+        }
+      }
+    }
+  }
+
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 30;
+    @include mixin.tab {
+      display: block;
+    }
+
+    span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: #000;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    &.open span:nth-child(1) {
+      transform: rotate(-45deg);
+      position: relative;
+      top: 8px;
+    }
+
+    &.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    &.open span:nth-child(3) {
+      transform: rotate(45deg);
+      position: relative;
+      top: -8px;
+    }
+  }
+}
+
+/*------------------------------------
+予約
+-------------------------------------*/
+.reservation {
+  background-color: #fff3e4;
+  height: 240px;
+  @include mixin.tab {
+    height: auto;
+    padding: 40px 0;
+  }
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    @include mixin.tab {
+      flex-direction: column;
+    }
+    .line {
+      width: 50%;
+      position: relative;
+      @include mixin.tab {
+        width: 100%;
+        margin-bottom: 100px;
+      }
+
+      p {
+        font-size: 1.4rem;
+        margin-bottom: 40px;
+      }
+      img {
+        width: 100px;
+      }
+    }
+    .hotpepper {
+      width: 50%;
+      @include mixin.tab {
+        width: 100%;
+      }
+
+      p {
+        font-size: 1.4rem;
+        margin-bottom: 40px;
+      }
+      img {
+        width: 250px;
+      }
+    }
+  }
+  .line::after {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    content: "";
+    width: 1px;
+    height: 80%;
+    background-color: #999595;
+    @include mixin.tab {
+      top: 100%;
+      left: 0;
+      transform: translateY(50px); // ここで調整が必要
+      height: 1px;
+      width: 100%;
+    }
+  }
+}
+
+/*------------------------------------
+フッター
+-------------------------------------*/
+footer {
+  padding: 20px;
+  background-color: #f8f8f8;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    @include mixin.pc {
+      justify-content: start;
+    }
+    @include mixin.tab {
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-left {
+      text-align: left;
+      @include mixin.pc {
+        width: 50%;
+        text-align: center;
+      }
+      @include mixin.tab {
+        display: none;
+      }
+
+      img {
+        width: 150px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin: 5px 0;
+      }
+    }
+
+    .footer-right {
+      width: 25%;
+      @include mixin.pc {
+        width: 50%;
+      }
+      @include mixin.tab {
+        width: 100%;
+      }
+      .footer-list {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        @include mixin.pc {
+          justify-content: center;
+        }
+
+        ul {
+          list-style: none;
+          text-align: left;
+          li {
+            margin-bottom: 5px;
+            @include mixin.pc {
+              margin-left: 30px;
+            }
+
+            a {
+              font-size: 1.1rem;
+              color: #333;
+              text-decoration: none;
+
+              &:before {
+                content: "-";
+                margin-right: 5px;
+              }
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+
+      .footer-icons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        @include mixin.pc {
+          justify-content: center;
+        }
+        a {
+          @include mixin.pc {
+            margin: 0 25px;
+          }
+          img {
+            width: 40px;
+            height: auto;
+          }
+        }
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+/*------------------------------------
+各ページタイトル
+-------------------------------------*/
+.page-title {
+  font-size: 1.6rem;
+  margin-top: 70px;
+  margin-bottom: 50px;
+  background-image: url(../img/head_bg.jpg);
+  background-size: cover;
+  text-align: center;
+  h2 {
+    padding: 40px 0;
+  }
+}
